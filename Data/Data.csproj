@@ -54,12 +54,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\EmuzerDbContext.cs" />
+    <Compile Include="Migrations\201704282015376_UserUpdate.cs" />
+    <Compile Include="Migrations\201704282015376_UserUpdate.Designer.cs">
+      <DependentUpon>201704282015376_UserUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704282025527_UserUpdate1.cs" />
+    <Compile Include="Migrations\201704282025527_UserUpdate1.Designer.cs">
+      <DependentUpon>201704282025527_UserUpdate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Picture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704282015376_UserUpdate.resx">
+      <DependentUpon>201704282015376_UserUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704282025527_UserUpdate1.resx">
+      <DependentUpon>201704282025527_UserUpdate1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,10 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Data.Data;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EmUzerWeb.Models;
+using EmUzerWeb.Tools;
 
 namespace EmUzerWeb.Controllers
 {
@@ -211,6 +213,21 @@ namespace EmUzerWeb.Controllers
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
+        }
+
+        public ActionResult GetFacebookPicture()
+        {
+            var db = new EmuzerDbContext();
+
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(u => u.Id == userId);
+
+            user.ProfilePicture.FilePath =
+                GetFacebookInformation.GetPictureUrl(
+                    user?.Logins?.FirstOrDefault(l => l.LoginProvider == "Facebook")?.ProviderKey);
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //
