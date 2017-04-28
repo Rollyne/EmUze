@@ -1,10 +1,14 @@
 ﻿using System.Web.Mvc;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Auth;
+using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
 
 namespace EmUzerWeb.Controllers
 {
     [RequireHttps]
     public class HomeController : Controller
-    {
+    { 
         public ActionResult Index()
         {
             return View();
@@ -22,6 +26,6 @@ namespace EmUzerWeb.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        } 
     }
 }
