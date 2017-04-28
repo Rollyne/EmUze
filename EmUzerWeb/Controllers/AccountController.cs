@@ -7,6 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EmUzerWeb.Models;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Auth;
+using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
+using System;
 
 namespace EmUzerWeb.Controllers
 {
@@ -15,6 +20,7 @@ namespace EmUzerWeb.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private static SpotifyWebAPI _spotify;
 
         public AccountController()
         {
@@ -419,6 +425,36 @@ namespace EmUzerWeb.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        public async Task<ActionResult> SpotifyAuthAsync()
+        {
+            WebAPIFactory webApiFactory = new WebAPIFactory(
+                "http://localhost",
+                8000,
+                "509976e01ef2432c9135a8dd26085d9d",
+                Scope.UserReadPrivate | Scope.UserReadEmail | Scope.PlaylistReadPrivate | Scope.UserLibraryRead |
+                Scope.UserReadPrivate | Scope.UserFollowRead | Scope.UserReadBirthdate | Scope.UserTopRead | Scope.PlaylistReadCollaborative |
+                Scope.UserReadRecentlyPlayed,
+                TimeSpan.FromSeconds(20));
+
+            try
+            {
+                //This will open the user's browser and returns once
+                //the user is authorized.
+                _spotify = await webApiFactory.GetWebApi();
+            }
+            catch (Exception ex)
+            {
+                ViewBag.SpotifyError = ex.Message;
+            }
+
+            if (_spotify == null)
+            {
+                return View("Error");
+            }
+
+            return View("Index");
         }
 
         #region Helpers
