@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using System.Web.Mvc;
+@using SpotifyAPI.Web.Auth;
+@using SpotifyAPI.Web.Models;
+@using SpotifyAPI.Web.Enums;
+@using SpotifyAPI.Web;
+@using EmUzerWeb.Models;
+
+@model AccountSpotifyModel 
+
+
+@{
+    foreach (var item in Model.currentPlaylist)
+    {
+        item.Name.ToString();
+    }
+}
