@@ -225,8 +225,12 @@ namespace EmUzerWeb.Controllers
             user.ProfilePicture.FilePath =
                 GetFacebookInformation.GetPictureUrl(
                     user?.Logins?.FirstOrDefault(l => l.LoginProvider == "Facebook")?.ProviderKey);
+            
+            user.ProfilePicture.ProviderTypeId = 2;
 
-            db.SaveChanges();
+            if(!string.IsNullOrEmpty(user.ProfilePicture.FilePath))
+                db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

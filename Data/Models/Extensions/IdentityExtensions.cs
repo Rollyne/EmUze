@@ -11,7 +11,9 @@ namespace Data.Models.Extensions
         {
             EmuzerDbContext db = new EmuzerDbContext();
             var userId = identity.GetUserId();
-            return db.Users.FirstOrDefault(u => u.Id == userId).ProfilePicture.FilePath;
+            var user = db.Users.FirstOrDefault(u => u.Id == userId);
+            var picture = user.ProfilePicture;
+            return picture.FilePath;
         }
     }
 }
