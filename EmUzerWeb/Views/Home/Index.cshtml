@@ -11,4 +11,46 @@
 <script type="text/javascript" src="@Url.Content("/Scripts/indexCamera.js")"></script>
 
 
-<img src="@ViewData["FacebookUrl"]" />
+
+    <input type="text" id="latitude" name="latitude" />
+    <input type="text" id="longitude" name="longitude" />
+    <button onclick="getLocation()">Get location</button>
+    <button onclick="getWeather()">Get Weather</button>
+
+
+
+<p id="demo"></p>
+
+<script>
+    var x = document.getElementById("demo");
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        $("#latitude").val(position.coords.latitude);
+        $("#longitude").val(position.coords.longitude);
+    }
+
+    function getWeather()
+    {
+        $.ajax
+        ({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "/Home/GetWeather?latitude=" + $('#latitude').val() + "&longtitude=" + $('#longitude').val(),
+            success: (function (data) {
+                alert(data);
+            }),
+            error: (function (data) {
+                console.log(data);
+                alert("error");
+            })
+            });
+    }
+</script>
