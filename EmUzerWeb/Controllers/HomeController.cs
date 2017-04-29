@@ -5,6 +5,10 @@ using Data.Data;
 using Data.Models;
 using EmUzerWeb.Tools;
 using Microsoft.AspNet.Identity;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Auth;
+using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
 
 namespace EmUzerWeb.Controllers
 {
