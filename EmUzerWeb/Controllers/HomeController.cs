@@ -1,13 +1,23 @@
 ﻿using System.Web.Mvc;
+using EmUzerWeb.Models;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Auth;
+using SpotifyAPI.Web.Enums;
+using SpotifyAPI.Web.Models;
 
 namespace EmUzerWeb.Controllers
 {
     [RequireHttps]
     public class HomeController : Controller
     {
+        private static SpotifyWebAPI _spotify;
+
         public ActionResult Index()
         {
-            return View();
+            var spot = new SpotifyAccount(_spotify);
+            spot.SetParams();
+            
+            return View(spot);
         }
 
         public ActionResult About()
