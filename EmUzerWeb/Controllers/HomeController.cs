@@ -5,15 +5,58 @@ using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web;
 using EmUzerWeb.Models;
 using System;
+using System.Text;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
 namespace EmUzerWeb.Controllers
 {
     [RequireHttps]
     public class HomeController : Controller
     {
-        SpotifyWebAPI _spotify = new SpotifyWebAPI() { UseAuth = true, AccessToken = "3e4b8786-1322-446e-86e4-ada46832333e" };
+        SpotifyWebAPI _spotify = new SpotifyWebAPI() { UseAuth = false};
         AccountSpotifyModel _spotifyAccount = new AccountSpotifyModel();
         SimpleTrack _spotTrack = new SimpleTrack();
+
+
+
+
+        private async Task<string> GetAccessToken()
+        {
+            SpotifyToken token = new SpotifyToken();
+
+            string postString = string.Format("grant_type=client_credentials");
+            byte[] byteArray = Encoding.UTF8.GetBytes(postString);
+
+            string url = "https://accounts.spotify.com/api/token";
+
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "POST";
+            request.Headers.Add("Authorization", "Basic ZTg5ZmQxYjhjMjc1NDQ3MzgwZmMyYmNjZjFjNDQ4NzE6MDk4NjhmZjU5MDVhNGY3N2JkMmNhNjM5YWQ5NGQxMjQ=");
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+            using (Stream dataStream = request.GetRequestStream())
+            {
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                using (WebResponse response = await request.GetResponseAsync())
+                {
+                    using (Stream responseStream = response.GetResponseStream())
+                    {
+                        using (StreamReader reader = new StreamReader(responseStream))
+                        {
+                            string responseFromServer = reader.ReadToEnd();
+                            token = JsonConvert.DeserializeObject<SpotifyToken>(responseFromServer);
+                        }
+                    }
+                }
+            }
+            return token.access_token;
+        }
+
+
+
 
         public ActionResult Index()
         {
@@ -22,19 +65,7 @@ namespace EmUzerWeb.Controllers
 
         public ActionResult Scanner()
         {
-            _spotifyAccount.savedTracks = _spotify.GetSavedTracks(40, 0, "");
-            //foreach (var track in _spotifyAccount.savedTracks.Items)
-            //{
-            //    if (_spotify.GetAudioFeatures(track.Track.Id).Acousticness > 0.6)
-            //    {
-            //        _spotifyAccount.currentPlaylist.Add(track.Trak);
-            //    }
-            //}
-
-
-
-            _spotifyAccount.savedTracks.Items.ForEach(item => _spotifyAccount.currentPlaylist.Add((_spotify.GetAudioFeatures(item.Track.Id).Acousticness > 0.5 ? item.Track : null)));
-          
+            ViewBag.Kur = Task.Run(() => GetAccessToken()).Result;
 
             return View(_spotifyAccount);
         }

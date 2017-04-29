@@ -13,8 +13,9 @@ namespace EmUzerWeb.Models
 {
     public class AccountSpotifyModel
     {  
-      public Paging<SavedTrack> savedTracks { get; set; }
-      public List<FullTrack> currentPlaylist { get; set; }
+      public List<SimpleTrack> savedTracks { get; set; }
+      public List<SimpleTrack> currentPlaylist { get; set; }
 
+      
     }
 }
