@@ -17,4 +17,19 @@ var video = document.getElementById('video');
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function () {
     context.drawImage(video, 0, 0, 640, 480);
+    canvas.toDataURL();
+    savePic(canvas.toDataURL());
 });
+
+function savePic(dataUrl) {
+    $.ajax({
+        type: "POST",
+        url: "Emotion/Post",
+        data: {
+            imageString: dataUrl
+        },
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
