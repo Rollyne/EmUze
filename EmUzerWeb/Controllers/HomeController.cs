@@ -14,10 +14,10 @@ namespace EmUzerWeb.Controllers
 
         public ActionResult Index()
         {
-            var spot = new SpotifyAccount(_spotify);
-            spot.SetParams();
+            var user = new SpotifyAccount(_spotify);
+            user.SetAccountProperties();
             
-            return View(spot);
+            return View(user);
         }
 
         public ActionResult About()

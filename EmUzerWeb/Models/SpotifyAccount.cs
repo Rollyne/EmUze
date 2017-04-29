@@ -62,7 +62,7 @@ namespace EmUzerWeb.Models
             }
         }
 
-        public void SetParams()
+        public void SetAccountProperties()
         {
             this.AccessToken = authResult.AccessToken;
         }
