@@ -1,10 +1,14 @@
-﻿@using EmUzerWeb.Models
-@model SpotifyAccount
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
-<h1>
-    @Model.AccessToken
-</h1>
+
+
+<video id="video" width="640" height="480" autoplay></video>
+<button id="snap">Snap Photo</button>
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<script type="text/javascript" src="@Url.Content("/Scripts/indexCamera.js")"></script>
+
+
+<img src="@ViewData["FacebookUrl"]" />

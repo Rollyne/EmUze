@@ -54,7 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\EmuzerDbContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\PictureProviderType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
