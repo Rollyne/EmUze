@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EmUzerWeb.Tests")]
+[assembly: AssemblyTitle("EmUzerWeb")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EmUzerWeb.Tests")]
+[assembly: AssemblyProduct("EmUzerWeb")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f064a06e-fb05-4ef7-98dc-a9c82e513eb8")]
+[assembly: Guid("831f3e32-c7cb-42de-b58e-fc7e6cb7ebe2")]
 
 // Version information for an assembly consists of the following four values:
 //
