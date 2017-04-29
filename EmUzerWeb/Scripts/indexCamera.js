@@ -28,7 +28,10 @@ function savePic(dataUrl) {
         data: {
             imageString: dataUrl
         },
-        success: function (data) {
+        success: function (emotion) {
+            alert(emotion);
+        },
+        error:  function(data) {
             console.log(data);
         }
     });
