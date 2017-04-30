@@ -35,7 +35,7 @@ namespace EmUzerWeb.Controllers.Spotify
             }
             catch (Exception ex)
             {
-                user.ModelError = ex.Message;
+                ViewBag.AuthError = ex.Message;
             }
 
             if (_spotify == null)
@@ -48,10 +48,19 @@ namespace EmUzerWeb.Controllers.Spotify
             }
         }
 
+        [ActionName("SpotifyLogin")]
+
         public async Task<ActionResult> AuthenticateAsync()
         {
-            var user = await ConnectToSpotifyAsync(_spotify);
-            return View(user);
+            var authResult = await ConnectToSpotifyAsync(_spotify);
+            var userInfo = authResult.GetPrivateProfile();
+            user = new SpotifyAccount()
+            {
+                ID = userInfo.Id,
+                AccessToken = authResult.AccessToken,
+                Username = userInfo.DisplayName,
+            };
+            return View(authResult);
         }
     }
 }

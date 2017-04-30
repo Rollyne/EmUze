@@ -12,12 +12,12 @@
 <h2>WRIGGLE LIKE A FUCKING EEL</h2>
 
 @{ 
-    List<string> albumsList = new List<string>();
-    var albums = Model.GetSavedAlbums(50, 10, "BG");
-    albums.Items.ForEach(item => albumsList.Add(item.Album.Name));
+    List<string> playlistsList = new List<string>();
+    var playlists = Model.SearchItems("Sadness", SearchType.Playlist, 10, 0);
+    playlists.Playlists.Items.ForEach(item => playlistsList.Add(item.Id));
 }
 
-@foreach (var item in albumsList)
+@foreach (var item in playlistsList)
 {
     <p>
         @item
