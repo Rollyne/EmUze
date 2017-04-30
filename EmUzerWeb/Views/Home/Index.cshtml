@@ -2,31 +2,41 @@
     ViewBag.Title = "Home Page";
 }
 
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<link href="~/Content/home.css" rel="stylesheet" />
 
-
-<video id="video" width="640" height="480" autoplay></video>
-<button id="snap">Snap Photo</button>
-<canvas id="canvas" width="640" height="480"></canvas>
+<div id="snapping-div">
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap" class="btn btn-success">Snap Photo</button>
+</div>
+<div id="result-div">
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <h3></h3>
+    <div id="actions">
+        <button id="continue" class="btn btn-default" onclick="snapAgain()">Snap Again</button>
+        <button id="continue" class="btn btn-success">Continue</button>
+    </div>
+</div>
 
 <script type="text/javascript" src="@Url.Content("/Scripts/indexCamera.js")"></script>
 
+<!--
+<input type="text" id="latitude" name="latitude" />
+<input type="text" id="longitude" name="longitude" />
+<button onclick="getLocation()">Get location</button>
+-->
 
-
-    <input type="text" id="latitude" name="latitude" />
-    <input type="text" id="longitude" name="longitude" />
-    <button onclick="getLocation()">Get location</button>
-    <button onclick="getWeather()">Get Weather</button>
-
-
-
-<p id="demo"></p>
+<div id="weather">
+    <h3></h3>
+    <button onclick="getLocation()" class="btn btn-primary">Get Weather</button>
+</div>
 
 <script>
     var x = document.getElementById("demo");
 
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(getWeather);
         } else {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
@@ -37,20 +47,21 @@
         $("#longitude").val(position.coords.longitude);
     }
 
-    function getWeather()
+    function getWeather(position)
     {
         $.ajax
         ({
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            url: "/Home/GetWeather?latitude=" + $('#latitude').val() + "&longtitude=" + $('#longitude').val(),
+            // url: "/Home/GetWeather?latitude=" + $('#latitude').val() + "&longtitude=" + $('#longitude').val(),
+            url: "/Home/GetWeather?latitude=" + position.coords.latitude + "&longtitude=" + position.coords.longitude,
             success: (function (data) {
-                alert(data);
+                $('#weather h3').html(data);
             }),
             error: (function (data) {
                 console.log(data);
                 alert("error");
             })
-            });
+        });
     }
 </script>

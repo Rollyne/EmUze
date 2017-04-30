@@ -1,0 +1,31 @@
+﻿#video, #canvas {
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#canvas {
+    margin-top: 1em;
+}
+
+#result-div {
+    display: none;
+    text-align: center;
+}
+
+#snapping-div .btn, #result-div .btn, #weather .btn {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+
+#result-div #actions {
+    display: none;
+}
+
+#weather {
+    text-align: center;
+}

@@ -15,11 +15,20 @@ var context = canvas.getContext('2d');
 var video = document.getElementById('video');
 
 // Trigger photo take
-document.getElementById("snap").addEventListener("click", function () {
+$("#snap").on("click", function () {
     context.drawImage(video, 0, 0, 640, 480);
     canvas.toDataURL();
     savePic(canvas.toDataURL());
+    $('#snapping-div').hide();
+    $('#result-div').show();
 });
+
+function snapAgain() {
+    $('#actions').hide();
+    $('#result-div').hide();
+    $('#result-div h3').html(' ');
+    $('#snapping-div').show();
+}
 
 function savePic(dataUrl) {
     $.ajax({
@@ -29,7 +38,8 @@ function savePic(dataUrl) {
             imageString: dataUrl
         },
         success: function (emotion) {
-            alert(emotion);
+            $('#result-div h3').html(emotion);
+            $('#actions').show();
         },
         error:  function(data) {
             console.log(data);

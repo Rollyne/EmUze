@@ -18,7 +18,12 @@ namespace EmUzerWeb.Tools.Emotions
             var file = File.OpenRead(imageFileName);
             EmotionServiceClient client = new EmotionServiceClient(APIKEY);
             var result = await client.RecognizeAsync(file);
-            Emotion emotion = result.FirstOrDefault();
+            Emotion emotion = result.OrderByDescending(e => e.FaceRectangle.Height * e.FaceRectangle.Width).FirstOrDefault();
+            
+            if (emotion == null || emotion.Scores == null)
+            {
+                return null;
+            }
 
             Dictionary<string, float> probabilities = new Dictionary<string, float>();
             probabilities.Add("Anger", emotion.Scores.Anger);
