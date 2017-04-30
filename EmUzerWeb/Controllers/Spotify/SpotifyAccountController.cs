@@ -8,7 +8,7 @@ using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using System.Threading.Tasks;
-using EmUzerWeb.Models;
+using Data.Models;
 
 namespace EmUzerWeb.Controllers.Spotify
 {
@@ -35,23 +35,32 @@ namespace EmUzerWeb.Controllers.Spotify
             }
             catch (Exception ex)
             {
-                user.ModelError = ex.Message;
+                ViewBag.AuthError = ex.Message;
             }
 
             if (_spotify == null)
             {
                 throw new NullReferenceException();
             }
-            else
-            {
-                return await Task.FromResult<SpotifyWebAPI>(_spotify);
-            }
+
+            return await Task.FromResult<SpotifyWebAPI>(_spotify);
+
         }
+
+        [ActionName("SpotifyLogin")]
 
         public async Task<ActionResult> AuthenticateAsync()
         {
-            var user = await ConnectToSpotifyAsync(_spotify);
-            return View(user);
+            var authResult = await ConnectToSpotifyAsync(_spotify);
+            var userInfo = authResult.GetPrivateProfile();
+            user = new SpotifyAccount()
+            {
+                Id = userInfo.Id,
+                AccessToken = authResult.AccessToken,
+                Username = userInfo.DisplayName,
+            };
+
+            return View();
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace EmUzerWeb.Controllers
 {
-    public class SuggestionsController : Controller
+    public class SuggestionController : Controller
     {
         // GET: Suggestions
         public ActionResult Index(string latitude, string longtitude, string emotion = "Neutral")

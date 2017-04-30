@@ -59,6 +59,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Picture.cs" />
     <Compile Include="Models\PictureProviderType.cs" />
+    <Compile Include="Models\SpotifyAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
