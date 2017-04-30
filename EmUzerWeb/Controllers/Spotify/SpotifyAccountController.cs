@@ -8,7 +8,7 @@ using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using System.Threading.Tasks;
-using EmUzerWeb.Models;
+using Data.Models;
 
 namespace EmUzerWeb.Controllers.Spotify
 {
@@ -56,7 +56,7 @@ namespace EmUzerWeb.Controllers.Spotify
             var userInfo = authResult.GetPrivateProfile();
             user = new SpotifyAccount()
             {
-                ID = userInfo.Id,
+                Id = userInfo.Id,
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
