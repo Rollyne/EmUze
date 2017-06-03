@@ -41,12 +41,6 @@ namespace EmUzerWeb.Controllers
             return View(model);
         }
 
-        string GetPlaylistId()
-        {
-            string id = "6eaWrAtfpKV9I1kv9RNRy9";
-            return Json(new { id = )};
-        }
-
         private string GetWeather(string latitude, string longtitude)
         {
             var url = "/weather?lat=" + latitude + "&lon=" + longtitude;
