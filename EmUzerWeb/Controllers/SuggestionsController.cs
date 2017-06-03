@@ -1,4 +1,5 @@
 ﻿using EmUzerWeb.Models;
+using EmUzerWeb.Tools.ExtensionMethods;
 using EmUzerWeb.Tools.Weather;
 using Google.Apis.Services;
 using Google.Apis.YouTube.v3;
@@ -25,26 +26,31 @@ namespace EmUzerWeb.Controllers
         {
             if (this.Session["SpotifyToken"] == null)
             {
-                return this.RedirectToAction("SpotifyLogin", "SpotifyAccount");
+                return this.RedirectToAction("SpotifyLogin", "SpotifyAccount", new
+                {
+                    returnUrl = string.Format("/Suggestion?latitude={0}&longtitude={1}&emotion={2}", latitude, longtitude, emotion)
+                });
             }
 
             string weather = this.GetWeather(latitude, longtitude);
-            
-            // TO-DO
-            SpotifyWebAPI spotifyClient = new SpotifyWebAPI()
-            {
-                UseAuth = true,
-                AccessToken = this.Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer"
-            };
+            var emotionSpotify = new List<string>();
+            var weatherSpotify = new List<string>();
 
+            try
+            {
+                emotionSpotify = this.GetSpotifySuggestions(emotion);
+                weatherSpotify = this.GetSpotifySuggestions(weather);
+            }
+            catch (NullReferenceException)
+            {
+                return this.RedirectToAction("SpotifyLogin", "SpotifyAccount", new
+                {
+                    returnUrl = string.Format("/Suggestions/Index?latitude={0}&longtitude={1}&emotion={2}", latitude, longtitude, emotion)
+                });
+            }
+            
             var emotionYoutube = this.GetYouTubeSuggestions(emotion);
             var weatherYoutube = this.GetYouTubeSuggestions(weather);
-
-            var emotionSpotify = spotifyClient.SearchItems(emotion, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
-                .Playlists.Items.Select(pl => pl.Uri).ToList();
-            var weatherSpotify = spotifyClient.SearchItems(weather, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
-                .Playlists.Items.Select(pl => pl.Uri).ToList();
 
             var model = new SuggestionViewModel()
             {
@@ -59,6 +65,19 @@ namespace EmUzerWeb.Controllers
             return View(model);
         }
 
+        private List<string> GetSpotifySuggestions(string keyword)
+        {
+            SpotifyWebAPI spotifyClient = new SpotifyWebAPI()
+            {
+                UseAuth = true,
+                AccessToken = this.Session["SpotifyToken"].ToString(),
+                TokenType = "Bearer"
+            };
+
+            return spotifyClient.SearchItems(keyword, SpotifyAPI.Web.Enums.SearchType.Playlist, 20)
+                   .Playlists.Items.Shuffle().Take(3).Select(pl => pl.Uri).ToList();
+        }
+
         private List<string> GetYouTubeSuggestions(string keyword)
         {
             var youtubeService = new YouTubeService(new BaseClientService.Initializer()
@@ -68,12 +87,12 @@ namespace EmUzerWeb.Controllers
 
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = keyword;
-            searchListRequest.MaxResults = 3;
+            searchListRequest.MaxResults = 20;
             searchListRequest.VideoCategoryId = "10";
             searchListRequest.Type = "video";
 
             var searchListResponse = searchListRequest.ExecuteAsync().Result;
-            return searchListResponse.Items.Select(i => i.Id.VideoId).ToList();
+            return searchListResponse.Items.Shuffle().Take(3).Select(i => i.Id.VideoId).ToList();
         }
 
         private string GetWeather(string latitude, string longtitude)

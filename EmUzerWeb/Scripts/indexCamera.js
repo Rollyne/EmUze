@@ -41,8 +41,10 @@ function savePic(dataUrl) {
             $('#result-div h3').html(emotion);
             $('#actions').show();
         },
-        error:  function(data) {
-            console.log(data);
+        error: function (data) {
+            alert("No face detected! Try again!");
+            $('#result-div').hide();
+            $('#snapping-div').show();
         }
     });
 }
