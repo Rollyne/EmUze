@@ -15,16 +15,27 @@ namespace EmUzerWeb.Controllers
     public class SuggestionController : Controller
     {
         private const string WEATHER_API_KEY = "a1c52306b2406040f1763904d7f0163e";
+
         // GET: Suggestions
         public ActionResult Index(string latitude, string longtitude, string emotion = "Neutral")
         {
-            string weather = this.GetWeather(latitude, longtitude);
-            // TO-DO
-            SpotifyWebAPI spotifyClient = new SpotifyWebAPI();
-            spotifyClient.UseAuth = false;
+            if (this.Session["SpotifyToken"] == null)
+            {
+                return this.RedirectToAction("SpotifyLogin", "SpotifyAccount");
+            }
 
-            var emotionSearch = spotifyClient.SearchItems(emotion, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
-                .Playlists.Items.Select(pl => pl.Uri).ToList();
+            string weather = this.GetWeather(latitude, longtitude);
+            
+            // TO-DO
+            SpotifyWebAPI spotifyClient = new SpotifyWebAPI()
+            {
+                UseAuth = true,
+                AccessToken = this.Session["SpotifyToken"].ToString(),
+                TokenType = "Bearer"
+            };
+
+            var test = spotifyClient.SearchItems(emotion, SpotifyAPI.Web.Enums.SearchType.Playlist, 3);
+            var emotionSearch = test.Playlists.Items.Select(pl => pl.Uri).ToList();
             var weatherSearch = spotifyClient.SearchItems(weather, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
                  .Playlists.Items.Select(pl => pl.Uri).ToList();
 

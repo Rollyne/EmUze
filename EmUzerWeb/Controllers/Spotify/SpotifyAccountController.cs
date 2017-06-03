@@ -50,19 +50,18 @@ namespace EmUzerWeb.Controllers.Spotify
         }
 
         [ActionName("SpotifyLogin")]
-
         public async Task<ActionResult> AuthenticateAsync()
         {
             var authResult = await ConnectToSpotifyAsync(_spotify);
             var userInfo = authResult.GetPrivateProfile();
             user = new SpotifyAccount()
             {
-
                 AccountId = userInfo.Id,
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
 
+            this.Session["SpotifyToken"] = user.AccessToken;
             return View();
         }
     }
