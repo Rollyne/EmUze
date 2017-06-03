@@ -49,7 +49,6 @@ namespace EmUzerWeb.Controllers.Spotify
         }
 
         [ActionName("SpotifyLogin")]
-
         public async Task<ActionResult> AuthenticateAsync()
         {
             var authResult = await ConnectToSpotifyAsync(_spotify);
@@ -60,6 +59,9 @@ namespace EmUzerWeb.Controllers.Spotify
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
+
+            Session["SpotifyToken"] = user.AccessToken;
+
             return View(authResult);
         }
     }

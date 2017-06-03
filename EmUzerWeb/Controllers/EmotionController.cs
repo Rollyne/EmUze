@@ -21,7 +21,9 @@ namespace EmUzerWeb.Controllers
             EmotionClassifier classifier = new EmotionClassifier();
             string emotion = Task.Run(() => classifier.GetEmotion(filename)).Result;
             System.IO.File.Delete(filename);
+            Session["Emotion"] = emotion;
             return Json(emotion, JsonRequestBehavior.AllowGet);
+
         }
     }
 }
