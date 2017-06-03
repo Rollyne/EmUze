@@ -91,9 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmUzerWeb\EmUzerWeb.csproj">
+    <ProjectReference Include="..\EmUzerWeb\EmUzer.Web.csproj">
       <Project>{FD055DCB-BBB1-432A-8D09-CCCDBCE26D6D}</Project>
-      <Name>EmUzerWeb</Name>
+      <Name>EmUzer.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

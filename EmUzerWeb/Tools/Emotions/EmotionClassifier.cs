@@ -11,12 +11,12 @@ namespace EmUzerWeb.Tools.Emotions
 {
     public class EmotionClassifier
     {
-        private const string APIKEY = "d48f9951957c4f2f9eb58609ea1a334f";
+        private const string EMOTION_API_KEY = "d48f9951957c4f2f9eb58609ea1a334f";
 
         public async Task<string> GetEmotion(string imageFileName)
         {
             var file = File.OpenRead(imageFileName);
-            EmotionServiceClient client = new EmotionServiceClient(APIKEY);
+            EmotionServiceClient client = new EmotionServiceClient(EMOTION_API_KEY);
             var result = await client.RecognizeAsync(file);
             Emotion emotion = result.OrderByDescending(e => e.FaceRectangle.Height * e.FaceRectangle.Width).FirstOrDefault();
             

@@ -14,6 +14,7 @@ namespace EmUzerWeb.Controllers
 {
     public class SuggestionController : Controller
     {
+        private const string WEATHER_API_KEY = "a1c52306b2406040f1763904d7f0163e";
         // GET: Suggestions
         public ActionResult Index(string latitude, string longtitude, string emotion = "Neutral")
         {
@@ -42,12 +43,11 @@ namespace EmUzerWeb.Controllers
         {
             var url = "/weather?lat=" + latitude + "&lon=" + longtitude;
             var apiUrl = "http://api.openweathermap.org/data/2.5";
-            var apiKey = "a1c52306b2406040f1763904d7f0163e";
 
             using (var client = new WebClient())
             {
                 Trace.WriteLine("<HTTP - GET - " + url + " >");
-                var response = client.DownloadString($"{apiUrl}{url}&appid={apiKey}");
+                var response = client.DownloadString($"{apiUrl}{url}&appid={WEATHER_API_KEY}");
                 var parsedResponse = JObject.Parse(response);
                 var item = WeatherDeserializer.GetWeatherCurrent(parsedResponse);
 
