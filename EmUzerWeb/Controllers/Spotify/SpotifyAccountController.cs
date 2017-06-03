@@ -83,11 +83,11 @@ namespace EmUzerWeb.Controllers.Spotify
             var userRepo = new UnitOfWork().GetUsersRepository();
             var repo = new UnitOfWork().GetSpotifyAccountsRepository();
             var user = userRepo.FirstOrDefault(i => i.Id == HttpContext.User.Identity.GetUserId());
-            var actualAccountId = repo.FirstOrDefault(i => i.UserId == user.Id).AccountId;
+            var actualAccountId = repo.FirstOrDefault(i => i.UserId == user.Id).Id;
             if (HttpContext.User.Identity.IsAuthenticated && actualAccountId == accountId)
             {
                 
-                var target = repo.FirstOrDefault(i => i.AccountId == accountId);
+                var target = repo.FirstOrDefault(i => i.Id == accountId);
                 repo.Delete(target);
                 repo.Save();
             }
@@ -102,7 +102,7 @@ namespace EmUzerWeb.Controllers.Spotify
             var userInfo = authResult.GetPrivateProfile();
             user = new SpotifyAccount()
             {
-                AccountId = userInfo.Id,
+                Id = userInfo.Id,
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
@@ -111,6 +111,7 @@ namespace EmUzerWeb.Controllers.Spotify
             var appUser = userRepo.FirstOrDefault(i => i.Id == HttpContext.User.Identity.GetUserId());
 
             appUser.SpotifyAccount = user;
+            userRepo.Update(appUser);
 
             userRepo.Save();
 

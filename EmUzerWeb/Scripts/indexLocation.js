@@ -8,6 +8,11 @@
 
 function suggest(position) {
     var emotion = $('#result-div h3').html();
+
+    if (!emotion) {
+        emotion = $('#emotionSelect').val();
+    }
+
     var weather = $('#weather h3').html();
     window.location.href = '/Suggestion?latitude=' + position.coords.latitude + '&longtitude=' + position.coords.longitude + '&emotion=' + emotion;
 }
