@@ -17,7 +17,7 @@ namespace EmUzerWeb.Controllers.Spotify
         public const string SPOTIFY_API_KEY = "509976e01ef2432c9135a8dd26085d9d";
 
         private static SpotifyWebAPI _spotify;
-        private SpotifyAccount user;
+        private SpotifyAccount user; 
 
         public async Task<SpotifyWebAPI> ConnectToSpotifyAsync(SpotifyWebAPI _spotify)
         {
@@ -28,7 +28,6 @@ namespace EmUzerWeb.Controllers.Spotify
                 Scope.PlaylistModifyPrivate | Scope.PlaylistModifyPublic | Scope.Streaming | Scope.UserFollowModify |
                 Scope.UserFollowRead | Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.UserTopRead,
                 TimeSpan.FromSeconds(20));
-
             try
             {
                 //This will open the user's browser and returns once
@@ -57,11 +56,12 @@ namespace EmUzerWeb.Controllers.Spotify
             user = new SpotifyAccount()
             {
                 AccountId = userInfo.Id,
-                AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
 
-            this.Session["SpotifyToken"] = user.AccessToken;
+            this.Session["SpotifyToken"] = authResult.AccessToken;
+            this.Session["UserId"] = user.AccountId;
+
             return View();
         }
     }
