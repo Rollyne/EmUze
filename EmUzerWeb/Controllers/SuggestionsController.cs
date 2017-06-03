@@ -1,5 +1,7 @@
 ﻿using EmUzerWeb.Models;
 using EmUzerWeb.Tools.Weather;
+using Google.Apis.Services;
+using Google.Apis.YouTube.v3;
 using Newtonsoft.Json.Linq;
 using SpotifyAPI.Web;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,6 +18,7 @@ namespace EmUzerWeb.Controllers
     public class SuggestionController : Controller
     {
         private const string WEATHER_API_KEY = "a1c52306b2406040f1763904d7f0163e";
+        private const string YOUTUBE_API_KEY = "AIzaSyBwifNeefkdiu_-nDW9QZI7hq4dkfrM0mA";
 
         // GET: Suggestions
         public ActionResult Index(string latitude, string longtitude, string emotion = "Neutral")
@@ -34,20 +38,42 @@ namespace EmUzerWeb.Controllers
                 TokenType = "Bearer"
             };
 
-            var test = spotifyClient.SearchItems(emotion, SpotifyAPI.Web.Enums.SearchType.Playlist, 3);
-            var emotionSearch = test.Playlists.Items.Select(pl => pl.Uri).ToList();
-            var weatherSearch = spotifyClient.SearchItems(weather, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
-                 .Playlists.Items.Select(pl => pl.Uri).ToList();
+            var emotionYoutube = this.GetYouTubeSuggestions(emotion);
+            var weatherYoutube = this.GetYouTubeSuggestions(weather);
+
+            var emotionSpotify = spotifyClient.SearchItems(emotion, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
+                .Playlists.Items.Select(pl => pl.Uri).ToList();
+            var weatherSpotify = spotifyClient.SearchItems(weather, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
+                .Playlists.Items.Select(pl => pl.Uri).ToList();
 
             var model = new SuggestionViewModel()
             {
                 Emotion = emotion,
                 Weather = weather,
-                EmotionResults = emotionSearch,
-                WeatherResults = weatherSearch
+                SpotifyEmotionResults = emotionSpotify,
+                SpotifyWeatherResults = weatherSpotify,
+                YoutubeEmotionResults = emotionYoutube,
+                YoutubeWeatherResults = weatherYoutube
             };
 
             return View(model);
+        }
+
+        private List<string> GetYouTubeSuggestions(string keyword)
+        {
+            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+            {
+                ApiKey = YOUTUBE_API_KEY,
+            });
+
+            var searchListRequest = youtubeService.Search.List("snippet");
+            searchListRequest.Q = keyword;
+            searchListRequest.MaxResults = 3;
+            searchListRequest.VideoCategoryId = "10";
+            searchListRequest.Type = "video";
+
+            var searchListResponse = searchListRequest.ExecuteAsync().Result;
+            return searchListResponse.Items.Select(i => i.Id.VideoId).ToList();
         }
 
         private string GetWeather(string latitude, string longtitude)
