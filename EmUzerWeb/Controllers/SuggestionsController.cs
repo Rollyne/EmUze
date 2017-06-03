@@ -27,6 +27,8 @@ namespace EmUzerWeb.Controllers
             var weatherSearch = spotifyClient.SearchItems(weather, SpotifyAPI.Web.Enums.SearchType.Playlist, 3)
                  .Playlists.Items.Select(pl => pl.Uri).ToList();
 
+            
+
             var model = new SuggestionViewModel()
             {
                 Emotion = emotion,
@@ -36,6 +38,12 @@ namespace EmUzerWeb.Controllers
             };
 
             return View(model);
+        }
+
+        string GetPlaylistId()
+        {
+            string id = "6eaWrAtfpKV9I1kv9RNRy9";
+            return Json(new { id = )};
         }
 
         private string GetWeather(string latitude, string longtitude)

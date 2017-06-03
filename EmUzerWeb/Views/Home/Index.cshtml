@@ -9,14 +9,24 @@
     <video id="video" width="640" height="480" autoplay></video>
     <button id="snap" class="btn btn-success">Snap Photo</button>
 </div>
+
 <div id="result-div">
     <canvas id="canvas" width="640" height="480"></canvas>
     <h3></h3>
     <div id="actions">
         <button id="continue" class="btn btn-default" onclick="snapAgain()">Snap Again</button>
-        <button id="continue" class="btn btn-success" onclick="getLocation()">Get Suggestions</button>
-    </div>
+        <button id="continue" class="btn btn-default" onclick="getLocation()">Get Location</button>
+        <button id="continue" class="btn btn-success" onclick="getPlaylist()">Get Suggestions</button>
+        
 </div>
+
+    <div id="player-div" width="800" height="600">
+
+
+    </div>
+
+    
 
 <script type="text/javascript" src="@Url.Content("/Scripts/indexCamera.js")"></script>
 <script type="text/javascript" src="@Url.Content("/Scripts/indexLocation.js")"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/indexPlayer.js")"></script>
