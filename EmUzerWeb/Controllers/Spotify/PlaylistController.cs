@@ -98,7 +98,7 @@ namespace EmUzerWeb.Controllers.Spotify
         }
 
 
-        public ActionResult Surprise() //unfinished
+        public ActionResult Surprise() 
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -125,7 +125,7 @@ namespace EmUzerWeb.Controllers.Spotify
 
 
 
-        public ActionResult Fear() //unfinished
+        public ActionResult Fear() 
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
