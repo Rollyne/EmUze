@@ -10,17 +10,11 @@ using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 
-
 namespace EmUzerWeb.Controllers.Spotify
 {
     public class PlaylistController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Happiness() 
+        public EmptyResult Happiness() 
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -42,11 +36,12 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            this.Session["GeneratedPlaylist"] = playlist.Id;
+
+            return new EmptyResult();
         } 
 
-
-        public ActionResult Anger()
+        public EmptyResult Anger()
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -68,11 +63,10 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
 
-
-        public ActionResult Contempt() 
+        public EmptyResult Contempt() 
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -94,11 +88,10 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
 
-
-        public ActionResult Surprise() 
+        public EmptyResult Surprise() 
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -120,12 +113,10 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
 
-
-
-        public ActionResult Fear() 
+        public EmptyResult Fear() 
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -147,13 +138,10 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
 
-
-
-
-        public ActionResult Disgust()
+        public EmptyResult Disgust()
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -175,12 +163,10 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
 
-
-
-        public ActionResult Sadness()
+        public EmptyResult Sadness()
         { 
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -188,19 +174,6 @@ namespace EmUzerWeb.Controllers.Spotify
                 AccessToken = Session["SpotifyToken"].ToString(),
                 TokenType = "Bearer",
             };
-
-            //TuneableTrack min = new TuneableTrack()
-            //{
-            //    Danceability = 0.562f,
-            //    Energy = 0.187f,
-            //    Liveness = 0.132f,
-            //};
-            //TuneableTrack max = new TuneableTrack()
-            //{
-            //    Danceability = 0.438f,
-            //    Energy = 0.940f,
-            //    Liveness = 0.300f,
-            //};
 
             var recommendedSongs = spotify.GetRecommendations(
                 new List<string>(){ "5VnYwYnG7QmpzQtxyubIwh" }, 
@@ -215,11 +188,10 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
 
-
-        public ActionResult Neutral()
+        public EmptyResult Neutral()
         {
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
@@ -241,11 +213,7 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
             spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
-            return View();
+            return new EmptyResult();
         }
-
-
-
-
     }
 }
