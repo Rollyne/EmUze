@@ -36,9 +36,12 @@ namespace EmUzerWeb.Controllers
             var emotionSpotify = new List<string>();
             var weatherSpotify = new List<string>();
 
+
             try
             {
                 emotionSpotify = this.GetSpotifySuggestions(emotion);
+                RedirectToAction("Playlist");
+                emotionSpotify.Add(Session["GeneratedPlaylist"].ToString());
                 weatherSpotify = this.GetSpotifySuggestions(weather);
             }
             catch (NullReferenceException)
@@ -76,6 +79,7 @@ namespace EmUzerWeb.Controllers
 
             return spotifyClient.SearchItems(keyword, SpotifyAPI.Web.Enums.SearchType.Playlist, 20)
                    .Playlists.Items.Shuffle().Take(2).Select(pl => pl.Uri).ToList();
+
         }
 
         private List<string> GetYouTubeSuggestions(string keyword)
