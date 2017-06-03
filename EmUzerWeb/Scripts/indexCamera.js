@@ -33,7 +33,7 @@ function snapAgain() {
 function savePic(dataUrl) {
     $.ajax({
         type: "POST",
-        url: "Emotion/Post",
+        url: "/Emotion/Post",
         data: {
             imageString: dataUrl
         },

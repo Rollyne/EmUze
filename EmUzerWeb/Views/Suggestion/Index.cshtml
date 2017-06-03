@@ -1,0 +1,25 @@
+﻿@using System.Collections.Generic;
+@using EmUzerWeb.Models;
+
+@model SuggestionViewModel
+@{
+    ViewBag.Title = "Suggestions";
+}
+
+<link href="~/Content/suggestions.css" rel="stylesheet" />
+
+<div id="suggestions">
+    <h2>Suggestions</h2>
+    <hr />
+    <h4>Emotion Results for: @Model.Emotion</h4>
+    @foreach (var uri in Model.EmotionResults)
+    {
+        <iframe src="https://embed.spotify.com/?uri=@uri" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    }
+    <hr />
+    <h4>Weather Results for: @Model.Weather</h4>
+    @foreach (var uri in Model.WeatherResults)
+    {
+        <iframe src="https://embed.spotify.com/?uri=@uri" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    }
+</div>

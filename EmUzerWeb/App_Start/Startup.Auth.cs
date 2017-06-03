@@ -6,7 +6,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using Owin.Security.Providers.Spotify;
 
 namespace EmUzerWeb
 {
@@ -64,10 +63,6 @@ namespace EmUzerWeb
             //    ClientId = "",
             //    ClientSecret = ""
             //});
-
-            app.UseSpotifyAuthentication(
-                clientId: "509976e01ef2432c9135a8dd26085d9d",
-                clientSecret: "38ef53c39639404a970ae72c0a1e11fc");
         }
     }
 }

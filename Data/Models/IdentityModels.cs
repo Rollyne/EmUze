@@ -14,7 +14,7 @@ namespace Data.Models
         }
         public Picture ProfilePicture { get; set; }
 
-        public string FacebookPictureUrl { get; set; }
+        public SpotifyAccount SpotifyAccount { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
