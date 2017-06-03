@@ -29,23 +29,6 @@ namespace Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.PictureProviderTypes.AddOrUpdate(
-                new PictureProviderType()
-                {
-                    Id = 1,
-                    Name = "None"
-                },
-                new PictureProviderType()
-                {
-                    Id = 2,
-                    Name = "Local"
-                },
-                new PictureProviderType()
-                {
-                    Id = 3,
-                    Name = "Facebook"
-                });
             context.SaveChanges();
         }
     }

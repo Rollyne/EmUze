@@ -1,9 +1,9 @@
 ﻿namespace Data.Models
 {
-    public class PictureProviderType
+    public enum PictureProviderType
     {
-        public int Id { get; set; }
-        
-        public string Name { get; set; }
+        None = 0,
+        Local = 1,
+        Facebook = 2
     }
 }
