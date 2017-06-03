@@ -24,5 +24,7 @@ namespace Data.Data
         public IDbSet<Picture> Pictures { get; set; }
 
         public IDbSet<PictureProviderType> PictureProviderTypes { get; set; }
+
+        public IDbSet<SpotifyAccount> SpotifyAccounts { get; set; }
     }
 }
