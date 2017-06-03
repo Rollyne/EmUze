@@ -14,6 +14,14 @@
     text-align: center;
 }
 
+#snapping-div {
+    text-align: center;
+}
+
+#snapping-div p {
+    margin-top: 0.5em;
+}
+
 #snapping-div .btn, #result-div .btn, #weather .btn {
     width: 20%;
     margin-left: auto;

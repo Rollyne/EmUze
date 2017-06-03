@@ -23,8 +23,8 @@ namespace EmUzerWeb.Controllers.Spotify
         {
             WebAPIFactory webApiFactory = new WebAPIFactory(
                 "http://localhost",
-                 44333,
-                 SPOTIFY_API_KEY,
+                44333,
+                SPOTIFY_API_KEY,
                 Scope.PlaylistModifyPrivate | Scope.PlaylistModifyPublic | Scope.Streaming | Scope.UserFollowModify |
                 Scope.UserFollowRead | Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.UserTopRead,
                 TimeSpan.FromSeconds(20));
@@ -46,11 +46,10 @@ namespace EmUzerWeb.Controllers.Spotify
             }
 
             return await Task.FromResult<SpotifyWebAPI>(_spotify);
-
         }
 
         [ActionName("SpotifyLogin")]
-        public async Task<ActionResult> AuthenticateAsync()
+        public async Task<ActionResult> AuthenticateAsync(string returnUrl)
         {
             var authResult = await ConnectToSpotifyAsync(_spotify);
             var userInfo = authResult.GetPrivateProfile();
@@ -62,7 +61,15 @@ namespace EmUzerWeb.Controllers.Spotify
             };
 
             this.Session["SpotifyToken"] = user.AccessToken;
-            return View();
+
+            if (string.IsNullOrWhiteSpace(returnUrl))
+            {
+                return View();
+            }
+            else
+            {
+                return this.Redirect(returnUrl);
+            }
         }
     }
 }
