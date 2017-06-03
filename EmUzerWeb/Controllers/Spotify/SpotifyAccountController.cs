@@ -42,10 +42,9 @@ namespace EmUzerWeb.Controllers.Spotify
             {
                 throw new NullReferenceException();
             }
-            else
-            {
-                return await Task.FromResult<SpotifyWebAPI>(_spotify);
-            }
+
+            return await Task.FromResult<SpotifyWebAPI>(_spotify);
+
         }
 
         [ActionName("SpotifyLogin")]
@@ -61,7 +60,8 @@ namespace EmUzerWeb.Controllers.Spotify
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
-            return View(authResult);
+
+            return View();
         }
     }
 }

@@ -30,23 +30,5 @@ namespace EmUzerWeb.Controllers
 
             return View();
         }
-
-        public ActionResult GetWeather(string latitude, string longtitude)
-        {
-
-            var url = "/weather?lat=" + latitude + "&lon=" + longtitude;
-            var apiUrl = "http://api.openweathermap.org/data/2.5";
-            var apiKey = "a1c52306b2406040f1763904d7f0163e";
-            using (var client = new WebClient())
-            {
-                Trace.WriteLine("<HTTP - GET - " + url + " >");
-                var response = client.DownloadString($"{apiUrl}{url}&appid={apiKey}");
-                var parsedResponse = JObject.Parse(response);
-                var item = WeatherDeserializer.GetWeatherCurrent(parsedResponse);
-                
-                return Json(item.Item.Title, JsonRequestBehavior.AllowGet);
-            }
-            
-        }
     }
 }
