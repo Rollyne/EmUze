@@ -11,8 +11,12 @@ namespace EmUzerWeb.Models
 
         public string Weather { get; set; }
 
-        public List<string> EmotionResults { get; set; }
+        public List<string> SpotifyEmotionResults { get; set; }
 
-        public List<string> WeatherResults { get; set; }
+        public List<string> SpotifyWeatherResults { get; set; }
+
+        public List<string> YoutubeEmotionResults { get; set; }
+
+        public List<string> YoutubeWeatherResults { get; set; }
     }
 }

@@ -8,25 +8,26 @@
 <div id="snapping-div">
     <video id="video" width="640" height="480" autoplay></video>
     <button id="snap" class="btn btn-success">Snap Photo</button>
+    <p>or just tell us what you feel</p>
+    <select id="emotionSelect" name="emotion">
+        <option value="Neutral">Neutral</option>
+        <option value="Happiness">Happiness</option>
+        <option value="Sadness">Sadness</option>
+        <option value="Surprise">Surprise</option>
+        <option value="Anger">Anger</option>
+        <option value="Disgust">Disgust</option>
+        <option value="Fear">Fear</option>
+        <option value="Contempt">Contempt</option>
+    </select>
 </div>
-
 <div id="result-div">
     <canvas id="canvas" width="640" height="480"></canvas>
     <h3></h3>
     <div id="actions">
-        <button id="continue" class="btn btn-default" onclick="snapAgain()">Snap Again</button>
-        <button id="continue" class="btn btn-default" onclick="getLocation()">Get Location</button>
-        <button id="continue" class="btn btn-success" onclick="getPlaylist()">Get Suggestions</button>
-        
-</div>
-
-    <div id="player-div" width="800" height="600">
-
-
+        <button id="snap-again" class="btn btn-default" onclick="snapAgain()">Snap Again</button>
+        <button id="get-suggestions" class="btn btn-success" onclick="getLocation()">Get Suggestions</button>
     </div>
-
-    
+</div>
 
 <script type="text/javascript" src="@Url.Content("/Scripts/indexCamera.js")"></script>
 <script type="text/javascript" src="@Url.Content("/Scripts/indexLocation.js")"></script>
-<script type="text/javascript" src="@Url.Content("/Scripts/indexPlayer.js")"></script>

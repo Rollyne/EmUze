@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Data.Data;
 using Data.Models;
+using Data.Repositories;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -307,6 +308,7 @@ namespace EmUzerWeb.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var spotifyAccountId = new UnitOfWork().GetSpotifyAccountsRepository()?.FirstOrDefault(i => i.UserId == user.Id)?.Id;
             if (user == null)
             {
                 return View("Error");
@@ -317,7 +319,8 @@ namespace EmUzerWeb.Controllers
             return View(new ManageLoginsViewModel
             {
                 CurrentLogins = userLogins,
-                OtherLogins = otherLogins
+                OtherLogins = otherLogins,
+                SpotifyAccountId = spotifyAccountId
             });
         }
 

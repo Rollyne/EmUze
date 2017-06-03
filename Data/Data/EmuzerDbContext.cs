@@ -15,6 +15,16 @@ namespace Data.Data
         {
             return new EmuzerDbContext();
         }
-        public IDbSet<SpotifyAccount> SpotifyAccounts { get; set; }
+        
+        public DbSet<SpotifyAccount> SpotifyAccounts { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOptional(s => s.SpotifyAccount) // Mark Address property optional in Student entity
+                .WithRequired(ad => ad.User); // mark Student property as required in StudentAddress entity. Cannot save StudentAddress without Student
+        }
     }
 }

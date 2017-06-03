@@ -7,22 +7,41 @@
 
 #canvas {
     margin-top: 1em;
+    display: none;
 }
 
 #result-div {
-    display: none;
     text-align: center;
 }
 
-#snapping-div .btn, #result-div .btn, #weather .btn {
-    width: 20%;
-    margin-left: auto;
-    margin-right: auto;
+#snapping-div {
     text-align: center;
-    display: block;
 }
 
-#result-div #actions {
+    #snapping-div p {
+        margin-top: 0.5em;
+    }
+
+    #snapping-div select {
+        border-radius: 5px;
+        width: 50%;
+        height: 35px;
+        text-align: center;
+    }
+
+        #snapping-div select option {
+            text-align: center;
+        }
+
+    #snapping-div .btn, #result-div .btn, #weather .btn {
+        width: 20%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        display: block;
+    }
+
+#result-div #snap-again {
     display: none;
 }
 

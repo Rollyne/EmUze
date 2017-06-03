@@ -20,14 +20,16 @@ $("#snap").on("click", function () {
     canvas.toDataURL();
     savePic(canvas.toDataURL());
     $('#snapping-div').hide();
-    $('#result-div').show();
+    $('#canvas').show();
+    $('#get-suggestions').hide();
 });
 
 function snapAgain() {
-    $('#actions').hide();
-    $('#result-div').hide();
-    $('#result-div h3').html(' ');
+    $('#snap-again').hide();
+    $('#canvas').hide();
+    $('#result-div h3').html('');
     $('#snapping-div').show();
+    $('#get-suggestions').show();
 }
 
 function savePic(dataUrl) {
@@ -39,10 +41,13 @@ function savePic(dataUrl) {
         },
         success: function (emotion) {
             $('#result-div h3').html(emotion);
-            $('#actions').show();
+            $('#snap-again').show();
+            $('#get-suggestions').show();
         },
-        error:  function(data) {
-            console.log(data);
+        error: function (data) {
+            alert("No face detected! Try again!");
+            $('#result-div').hide();
+            $('#snapping-div').show();
         }
     });
 }
