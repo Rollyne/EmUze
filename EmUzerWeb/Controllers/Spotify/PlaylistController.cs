@@ -19,61 +19,29 @@ namespace EmUzerWeb.Controllers.Spotify
         {
             return View();
         }
+
         public ActionResult Sad()
-        {
-            if (Session["Emotion"] == null)
+        { 
+            SpotifyWebAPI spotify = new SpotifyWebAPI
             {
-                return View("Error");
-            }
-            else
-            {
-                SpotifyWebAPI spotify = new SpotifyWebAPI
-                {
-                    UseAuth = true,
-                    AccessToken = Session["SpotifyToken"].ToString(),
-                    TokenType = "Bearer",
-                };
+                UseAuth = true,
+                AccessToken = Session["SpotifyToken"].ToString(),
+                TokenType = "Bearer",
+            };
 
-                TuneableTrack min = new TuneableTrack()
-                {
-                    Danceability = 0.562f,
-                    Energy = 0.187f,
-                    Liveness = 0.132f,
-                };
-                TuneableTrack max = new TuneableTrack()
-                {
-                    Danceability = 0.438f,
-                    Energy = 0.940f,
-                    Liveness = 0.300f,
-                };
+            var recommendedSongs = spotify.GetRecommendations(
+                new List<string>(){ "5VnYwYnG7QmpzQtxyubIwh" }, 
+                new List<string>(){ "slowcore" }, 
+                new List<string>(){ "25ia1zWRMAwPpA2LsHwPv2" }, 
+                null, null, null, 50, "BG");
 
-                FullTrack trck = spotify.GetTrack("25ia1zWRMAwPpA2LsHwPv2");
-                var stuff = spotify.GetAudioFeatures("25ia1zWRMAwPpA2LsHwPv2");
-                TuneableTrack target = new TuneableTrack
-                {
-                    Acousticness = stuff.Acousticness,
-                    Danceability = stuff.Danceability,
-                    DurationMs = stuff.DurationMs,
-                    Energy = stuff.Energy,
-                    Instrumentalness = stuff.Instrumentalness,
-                    Key = stuff.Key,
-                    Liveness = stuff.Liveness,
-                    Loudness = stuff.Loudness,
-                    Mode = stuff.Mode,
-                    Popularity = 38,
-                    Speechiness = stuff.Speechiness,
-                    Tempo = stuff.Tempo,
-                    TimeSignature = stuff.TimeSignature,
-                    Valence = stuff.Valence,
-                };
+            var seededTracksUris = new List<string>();
+            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
 
-                var recommendedSongs = spotify.GetRecommendations(null, null, null, target, null, null, 50, "BG");
-                var seededTracksUris = new List<string>();
-                recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-                var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-                spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-                spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
-            }
+            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
+            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
+            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+
             return View();
         }
     }

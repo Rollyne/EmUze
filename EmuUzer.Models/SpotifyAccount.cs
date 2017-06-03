@@ -12,9 +12,6 @@ namespace Data.Models
 
         public string Username { get; set; }
 
-        [NotMapped]
-        public string AccessToken { get; set; }
-
         public string ModelError { get; set; }
 
         public ApplicationUser User { get; set; }
