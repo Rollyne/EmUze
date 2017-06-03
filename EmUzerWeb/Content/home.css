@@ -1,17 +1,18 @@
-﻿#video, #canvas {
-    display: block;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#canvas {
+﻿#canvas {
     margin-top: 1em;
 }
 
 #result-div {
     display: none;
     text-align: center;
+}
+
+#snapping-div {
+    text-align: center;
+}
+
+#snapping-div p {
+    margin-top: 0.5em;
 }
 
 #snapping-div .btn, #result-div .btn, #weather .btn {
