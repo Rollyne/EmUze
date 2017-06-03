@@ -14,8 +14,12 @@ namespace EmUzerWeb.Controllers.Spotify
 {
     public class PlaylistController : Controller
     {
-        public EmptyResult Happiness() 
+
+        private void EmotionTemplate(string artistId_1, string genre_1, string trackId_1, string artistId_2 = "", string genre_2 = "", string trackId_2 = "")
         {
+
+        
+        
             SpotifyWebAPI spotify = new SpotifyWebAPI
             {
                 UseAuth = true,
@@ -23,10 +27,12 @@ namespace EmUzerWeb.Controllers.Spotify
                 TokenType = "Bearer",
             };
 
+            
+
             var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "6OqhFYFJDnBBHas02HopPT" },
-                new List<string>() { "pop", "dance" },
-                new List<string>() { "3LuLUNgRmmgcr14dTIWH2S" },
+                new List<string>() { artistId_1, artistId_2 },
+                new List<string>() { genre_1, genre_2},
+                new List<string>() { trackId_1, trackId_2},
                 null, null, null, 50, "BG");
 
             var seededTracksUris = new List<string>();
@@ -38,7 +44,16 @@ namespace EmUzerWeb.Controllers.Spotify
 
             this.Session["GeneratedPlaylist"] = playlist.Id;
 
-            return new EmptyResult();
+            
+        }
+
+        //!!!!!!!
+        public ActionResult Happiness() 
+        {
+            
+            EmotionTemplate("6OqhFYFJDnBBHas02HopPT ", "pop", "3LuLUNgRmmgcr14dTIWH2S", null, "dance", null );
+
+            return View();
         } 
 
         public EmptyResult Anger()
