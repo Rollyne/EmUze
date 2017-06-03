@@ -14,6 +14,8 @@ namespace EmUzerWeb.Controllers.Spotify
 {
     public class SpotifyAccountController : Controller
     {
+        public const string SPOTIFY_API_KEY = "509976e01ef2432c9135a8dd26085d9d";
+
         private static SpotifyWebAPI _spotify;
         private SpotifyAccount user;
 
@@ -22,7 +24,7 @@ namespace EmUzerWeb.Controllers.Spotify
             WebAPIFactory webApiFactory = new WebAPIFactory(
                 "http://localhost",
                  44333,
-                "509976e01ef2432c9135a8dd26085d9d",
+                 SPOTIFY_API_KEY,
                 Scope.PlaylistModifyPrivate | Scope.PlaylistModifyPublic | Scope.Streaming | Scope.UserFollowModify |
                 Scope.UserFollowRead | Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.UserTopRead,
                 TimeSpan.FromSeconds(20));
@@ -42,10 +44,9 @@ namespace EmUzerWeb.Controllers.Spotify
             {
                 throw new NullReferenceException();
             }
-            else
-            {
-                return await Task.FromResult<SpotifyWebAPI>(_spotify);
-            }
+
+            return await Task.FromResult<SpotifyWebAPI>(_spotify);
+
         }
 
         [ActionName("SpotifyLogin")]
@@ -60,9 +61,8 @@ namespace EmUzerWeb.Controllers.Spotify
                 Username = userInfo.DisplayName,
             };
 
-            Session["SpotifyToken"] = user.AccessToken;
-
-            return View(authResult);
+            this.Session["SpotifyToken"] = user.AccessToken;
+            return View();
         }
     }
 }

@@ -317,9 +317,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Data.csproj">
+    <ProjectReference Include="..\Data\EmUzer.Data.csproj">
       <Project>{45A3B0A3-E696-4D37-80B6-4FEBC3726EF2}</Project>
-      <Name>Data</Name>
+      <Name>EmUzer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmuUzer.Models\EmUzer.Models.csproj">
+      <Project>{6a0c6b3d-f099-4de7-9aaa-8f0a1683c0f4}</Project>
+      <Name>EmUzer.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
