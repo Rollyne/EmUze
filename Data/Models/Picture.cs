@@ -6,7 +6,6 @@ namespace Data.Models
     {
         public Picture()
         {
-            ProviderType = new PictureProviderType();
             this.ProviderTypeId = 1;
         }
 
