@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using Data.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -20,11 +15,6 @@ namespace Data.Data
         {
             return new EmuzerDbContext();
         }
-
-        public IDbSet<Picture> Pictures { get; set; }
-
-        public IDbSet<PictureProviderType> PictureProviderTypes { get; set; }
-
         public IDbSet<SpotifyAccount> SpotifyAccounts { get; set; }
     }
 }
