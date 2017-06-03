@@ -1,3 +1,34 @@
-﻿#suggestions {
+﻿#heading, #suggestions {
     text-align: center;
+}
+
+iframe {
+    max-width: 100%;
+}
+
+#suggestions .panel-heading:hover {
+    cursor: pointer;
+}
+
+#suggestions .panel {
+    border-width: 1px;
+    border-style: solid;
+}
+
+#spotify-suggestions {
+    border-color: #1db954;
+}
+
+#youtube-suggestions {
+    border-color: #cd201f;
+}
+
+#spotify-suggestions .panel-heading {
+    background-color: #1db954;
+    color: #ffffff;
+}
+
+#youtube-suggestions .panel-heading {
+    background-color: #cd201f;
+    color: #ffffff;
 }
