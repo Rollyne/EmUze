@@ -18,6 +18,7 @@ namespace EmUzerWeb.Models
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
         public IList<AuthenticationDescription> OtherLogins { get; set; }
+        public string SpotifyAccountId { get; set; }
     }
 
     public class FactorViewModel

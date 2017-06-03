@@ -48,6 +48,22 @@
                             </td>
                         </tr>
                     }
+                    @if (!string.IsNullOrEmpty(Model.SpotifyAccountId))
+                    {
+                        <tr>
+                            <td>Spotify</td>
+                            <td>
+                                    @using (Html.BeginForm("RemoveSpotifyAccount", "SpotifyAccount"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div>
+                                            @Html.Hidden("accountId", Model.SpotifyAccountId)
+                                            <input type="submit" class="btn btn-default" value="Remove" title="Remove this Spotify login from your account" />
+                                        </div>
+                                    }
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         }
@@ -66,5 +82,17 @@
                 </div>
             }
         }
+        if (string.IsNullOrEmpty(Model.SpotifyAccountId))
+        {
+            using (Html.BeginForm("SpotifyLogin", "SpotifyAccount"))
+            {
+                @*@Html.AntiForgeryToken();*@
+                <button type="submit" class="btn btn-default" id="spotifyAuth" name="provider" value="Spotify"
+                        title="Log in using your Spotify account" style="display:inline-block">
+                    Spotify
+                </button>
+            }
+        }
+
     }
 }

@@ -15,6 +15,7 @@ namespace Data.Data
         {
             return new EmuzerDbContext();
         }
+        
         public IDbSet<SpotifyAccount> SpotifyAccounts { get; set; }
     }
 }
