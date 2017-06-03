@@ -39,6 +39,8 @@ namespace EmUzerWeb.Controllers
             try
             {
                 emotionSpotify = this.GetSpotifySuggestions(emotion);
+                emotionSpotify.Add(this.Session["GeneratedPlaylist"].ToString());
+
                 weatherSpotify = this.GetSpotifySuggestions(weather);
             }
             catch (NullReferenceException)
