@@ -55,7 +55,7 @@ namespace EmUzerWeb.Controllers.Spotify
             var userInfo = authResult.GetPrivateProfile();
             user = new SpotifyAccount()
             {
-                Id = userInfo.Id,
+                AccountId = userInfo.Id,
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };

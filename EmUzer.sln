@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmUzerWeb", "EmUzerWeb\EmUzerWeb.csproj", "{FD055DCB-BBB1-432A-8D09-CCCDBCE26D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmUzer.Web", "EmUzerWeb\EmUzer.Web.csproj", "{FD055DCB-BBB1-432A-8D09-CCCDBCE26D6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmUzerWeb.Tests", "EmUzerWeb.Tests\EmUzerWeb.Tests.csproj", "{18E72AF6-752F-4739-9CF0-C7E45DBCBF07}"
 EndProject
