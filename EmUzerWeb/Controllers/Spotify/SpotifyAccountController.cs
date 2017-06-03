@@ -14,6 +14,8 @@ namespace EmUzerWeb.Controllers.Spotify
 {
     public class SpotifyAccountController : Controller
     {
+        public const string SPOTIFY_API_KEY = "509976e01ef2432c9135a8dd26085d9d";
+
         private static SpotifyWebAPI _spotify;
         private SpotifyAccount user;
 
@@ -22,7 +24,7 @@ namespace EmUzerWeb.Controllers.Spotify
             WebAPIFactory webApiFactory = new WebAPIFactory(
                 "http://localhost",
                  44333,
-                "509976e01ef2432c9135a8dd26085d9d",
+                 SPOTIFY_API_KEY,
                 Scope.PlaylistModifyPrivate | Scope.PlaylistModifyPublic | Scope.Streaming | Scope.UserFollowModify |
                 Scope.UserFollowRead | Scope.UserLibraryRead | Scope.UserReadPrivate | Scope.UserTopRead,
                 TimeSpan.FromSeconds(20));
