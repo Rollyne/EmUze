@@ -104,19 +104,29 @@ namespace EmUzerWeb.Controllers.Spotify
             user = new SpotifyAccount()
             {
                 SpotifyId = userInfo.Id,
-                AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
 
             var userRepo = new UnitOfWork().GetUsersRepository();
+            var spAccRepo = new UnitOfWork().GetSpotifyAccountsRepository();
             var appUser = userRepo.FirstOrDefault(i => i.Id == HttpContext.User.Identity.GetUserId());
+            if (spAccRepo.FirstOrDefault(a => a.UserId == appUser.Id) != null)
+            {
+                try
+                {
+                    appUser.SpotifyAccount = user;
+                    userRepo.Update(appUser);
 
-            appUser.SpotifyAccount = user;
-            userRepo.Update(appUser);
+                    userRepo.Save();
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+            
 
-            userRepo.Save();
-
-            this.Session["SpotifyToken"] = user.AccessToken;
+            this.Session["SpotifyToken"] =authResult.AccessToken;
 
             if (string.IsNullOrWhiteSpace(returnUrl))
             {
