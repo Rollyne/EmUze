@@ -37,18 +37,18 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(userId, playlist.Id);
             spotify.AddPlaylistTracks(userId, playlist.Id, seededTracksUris);
 
-            this.Session["GeneratedPlaylist"] = playlist.Uri;
+            this.Session["GeneratedPlaylist"] = playlist.Id;
         }
        
         public ActionResult Happiness() 
         {
-            EmotionTemplate("6OqhFYFJDnBBHas02HopPT", "pop", "3LuLUNgRmmgcr14dTIWH2S", "3Sz7ZnJQBIHsXLUSo0OQtM", "dance");
+            EmotionTemplate("4tZwfgrHOc3mvqYlEYSvVi", "pop", "0DiWol3AO6WpXZgp0goxAV", "3Sz7ZnJQBIHsXLUSo0OQtM", "dance");
             return PartialView("_GeneratedPlaylistPartial");
         } 
 
         public ActionResult Anger()
         {
-            EmotionTemplate("RADpgYLOuS2ZxDq7ggYYH", "pop", "5iAet1Smzk6SWMBR6eWNBz", "30U8fYtiNpeA5KH6H87QUV", "heavy-metal");
+            EmotionTemplate("30U8fYtiNpeA5KH6H87QUV", "punk-rock", "5iAet1Smzk6SWMBR6eWNBz", "5RADpgYLOuS2ZxDq7ggYYH", "heavy-metal");
             return PartialView("_GeneratedPlaylistPartial");
 ;
         }
@@ -73,7 +73,7 @@ namespace EmUzerWeb.Controllers.Spotify
 
         public ActionResult Disgust()
         {
-            EmotionTemplate("655AEE6ifgDJ3TYkhHdP48", "doom-metal", "34dkZZNQJzEJRqPkywYmEY", "Sleep", "sludge-metal");
+            EmotionTemplate("655AEE6ifgDJ3TYkhHdP48", "doom-metal", "34dkZZNQJzEJRqPkywYmEY", "4Mt6w4tDGiPgV5q6JWPlrI", "sludge-metal");
             return PartialView("_GeneratedPlaylistPartial");
         }
 
