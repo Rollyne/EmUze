@@ -15,6 +15,10 @@
 
         @Html.ActionLink("Get Picture From Facebook ", "GetFacebookPicture")
     </div>
+    @using (Html.BeginForm("ChangeProfilePicture", "Manage"))
+    {
+        @Html.EditorFor(m => m.Photo)
+    }
 
     <dl class="dl-horizontal">
         <dt>Password:</dt>

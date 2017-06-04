@@ -270,7 +270,9 @@
     <Content Include="Content\common.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\imageCapture.css" />
+    <Content Include="Content\layout.css" />
     <Content Include="Content\navbar.css" />
+    <Content Include="Content\preloader.css" />
     <Content Include="Content\suggestions.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -288,6 +290,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo.svg" />
+    <Content Include="Images\Preloader_3.gif" />
+    <Content Include="Scripts\preloader.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\home.js" />
@@ -347,7 +353,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

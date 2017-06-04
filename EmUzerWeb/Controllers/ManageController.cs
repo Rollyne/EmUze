@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -238,6 +239,40 @@ namespace EmUzerWeb.Controllers
                 db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ChangeProfilePicture(IndexViewModel model)
+        {
+            if (!model.Photo.ContentType.StartsWith("image"))
+            {
+                return RedirectToAction("Index");
+            }
+
+            var userRepo = new UnitOfWork().GetUsersRepository();
+            var user = userRepo.FirstOrDefault(u => u.Id == User.Identity.GetUserId());
+            user.ProfilePicture = new Picture()
+            {
+                FilePath = UploadPhoto(model.Photo),
+                FileFormat = model.Photo.ContentType.Split('/')[1],
+                FileName = model.Photo.FileName,
+                ProviderType = PictureProviderType.Local
+            };
+
+            return RedirectToAction("Index");
+        }
+
+        private string UploadPhoto(HttpPostedFileBase photo)
+        {
+            
+            var currentUserId = User.Identity.GetUserId(); 
+            var photoName = "photo.png";
+            string path = Path.Combine(HttpContext.Server.MapPath("~"), @"Images\ApplicationImages\UserImages\", currentUserId);
+            Directory.CreateDirectory(path);
+
+            photo.SaveAs(Path.Combine(path, photoName));
+
+            return path;
         }
 
         //

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -8,6 +9,7 @@ namespace EmUzerWeb.Models
     public class IndexViewModel
     {
         public string ProfilePicturePath { get; set; }
+        public HttpPostedFileBase Photo { get; set; }
         public string Username { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }

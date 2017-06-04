@@ -7,9 +7,11 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/navbar.css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="/Content/layout.css" />
+
 </head>
 
-@*<style>
+<style>
     .no-js #loader {
         display: none;
     }
@@ -28,19 +30,14 @@
         width: 100%;
         height: 100%;
         z-index: 9999;
-        background: url(~/Images/Preloader_3.gif) center no-repeat #fff;
+        background: url(../../Images/Preloader_3.gif) center no-repeat #fff;
     }
 </style>
-<script>
-    $(window).on('load', function () {
-        // Animate loader off screen
-        $(".se-pre-con").fadeOut("slow");
-    });
-</script>*@
     
 <body>
-    <div class="se-pre-con"></div>
-<div class="navbar navbar-fixed-top navbarAddition">
+
+<div class="se-pre-con"></div>
+<div class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,7 +45,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("EmUzer", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+            <a href="/Home/Index" ><img src="~/Images/logo.png" class="logo"/></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -63,6 +60,7 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/Scripts/preloader.js")
 @RenderSection("scripts", required: false)
 </body>
 </html>
