@@ -103,7 +103,6 @@ namespace EmUzerWeb.Controllers.Spotify
             user = new SpotifyAccount()
             {
                 Id = userInfo.Id,
-                AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
 
@@ -115,7 +114,7 @@ namespace EmUzerWeb.Controllers.Spotify
 
             userRepo.Save();
 
-            this.Session["SpotifyToken"] = user.AccessToken;
+            this.Session["SpotifyToken"] = authResult.AccessToken;
 
             if (string.IsNullOrWhiteSpace(returnUrl))
             {

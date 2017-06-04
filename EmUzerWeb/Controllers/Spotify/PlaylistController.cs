@@ -47,7 +47,7 @@ namespace EmUzerWeb.Controllers.Spotify
             
         }
 
-        //!!!!!!!
+       
         public ActionResult Happiness() 
         {
             
@@ -58,175 +58,52 @@ namespace EmUzerWeb.Controllers.Spotify
 
         public EmptyResult Anger()
         {
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
 
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "5RADpgYLOuS2ZxDq7ggYYH", "30U8fYtiNpeA5KH6H87QUV" },
-                new List<string>() { "punk-rock", "heavy-metal" },
-                new List<string>() { "5iAet1Smzk6SWMBR6eWNBz" },
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+            EmotionTemplate("RADpgYLOuS2ZxDq7ggYYH", "pop", "5iAet1Smzk6SWMBR6eWNBz", "30U8fYtiNpeA5KH6H87QUV", "heavy-metal", null);
 
             return new EmptyResult();
+;
         }
 
         public EmptyResult Contempt() 
         {
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
+            EmotionTemplate("0wNZvrIMNUCs24G0wFg2D6", "punk-rock", "4YX32mhnhrnbUeeTe846it", "6A7uqgC2N1nUhrCLAytHxN", "pop-punk", null);
 
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "0wNZvrIMNUCs24G0wFg2D6", "6A7uqgC2N1nUhrCLAytHxN" },
-                new List<string>() { "punk-rock", "pop-punk" },
-                new List<string>() { "4YX32mhnhrnbUeeTe846it" },
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
 
             return new EmptyResult();
         }
 
         public EmptyResult Surprise() 
         {
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
-
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "0wNZvrIMNUCs24G0wFg2D6", "1aDpQ3bo57IlYWmsG5sdlp" },
-                new List<string>() { "noise-pop", "noise-rock" },
-                new List<string>() { "4J5htL1ewHiMh3c60U5Ddx" },
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+            EmotionTemplate("0wNZvrIMNUCs24G0wFg2D6", "noise-pop", "4J5htL1ewHiMh3c60U5Ddx", "1aDpQ3bo57IlYWmsG5sdlp", "noise-rock", null);
 
             return new EmptyResult();
         }
 
         public EmptyResult Fear() 
         {
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
-
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "6uVeWolwyRDrT84lLsaZyW" },
-                new List<string>() { "noise", "blackgaze" },
-                new List<string>() { "1yDMqzf9oZzjn2UJtaQAuP" },
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+            EmotionTemplate("6uVeWolwyRDrT84lLsaZyW", "noise", "1yDMqzf9oZzjn2UJtaQAuP", null, "blackgaze", null);
 
             return new EmptyResult();
         }
 
         public EmptyResult Disgust()
         {
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
-
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "655AEE6ifgDJ3TYkhHdP48", "" },
-                new List<string>() { "doom-metal"},
-                new List<string>() { "34dkZZNQJzEJRqPkywYmEY" },
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+            EmotionTemplate("655AEE6ifgDJ3TYkhHdP48", "doom-metal", "34dkZZNQJzEJRqPkywYmEY", null, "sludge-metal", null);
 
             return new EmptyResult();
         }
 
         public EmptyResult Sadness()
-        { 
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
-
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>(){ "5VnYwYnG7QmpzQtxyubIwh" }, 
-                new List<string>(){ "slowcore" }, 
-                new List<string>(){ "25ia1zWRMAwPpA2LsHwPv2" }, 
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+        {
+            EmotionTemplate("5VnYwYnG7QmpzQtxyubIwh", "slowcore", "25ia1zWRMAwPpA2LsHwPv2", null, "shoegaze", null);
 
             return new EmptyResult();
         }
 
         public EmptyResult Neutral()
         {
-            SpotifyWebAPI spotify = new SpotifyWebAPI
-            {
-                UseAuth = true,
-                AccessToken = Session["SpotifyToken"].ToString(),
-                TokenType = "Bearer",
-            };
-
-            var recommendedSongs = spotify.GetRecommendations(
-                new List<string>() { "1HY2Jd0NmPuamShAr6KMms", "1Xyo4u8uXC1ZmMpatF05PJ" },
-                new List<string>() { "pop"},
-                new List<string>() { "6I9VzXrHxO9rA9A5euc8Ak" },
-                null, null, null, 50, "BG");
-
-            var seededTracksUris = new List<string>();
-            recommendedSongs.Tracks.ForEach(item => seededTracksUris.Add(item.Uri));
-
-            var playlist = spotify.CreatePlaylist(this.Session["UserId"].ToString(), "SadTest");
-            spotify.FollowPlaylist(this.Session["UserId"].ToString(), playlist.Id);
-            spotify.AddPlaylistTracks(this.Session["UserId"].ToString(), playlist.Id, seededTracksUris);
+            EmotionTemplate("1HY2Jd0NmPuamShAr6KMms", "pop", "6I9VzXrHxO9rA9A5euc8Ak", "1Xyo4u8uXC1ZmMpatF05PJ", null, null);
 
             return new EmptyResult();
         }
