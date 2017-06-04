@@ -55,9 +55,9 @@
   <ItemGroup>
     <Compile Include="Data\EmuzerDbContext.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
-    <Compile Include="Migrations\201706040718218_Initial.cs" />
-    <Compile Include="Migrations\201706040718218_Initial.Designer.cs">
-      <DependentUpon>201706040718218_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201706040932161_InitialMigration.cs" />
+    <Compile Include="Migrations\201706040932161_InitialMigration.Designer.cs">
+      <DependentUpon>201706040932161_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,8 +79,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706040718218_Initial.resx">
-      <DependentUpon>201706040718218_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706040932161_InitialMigration.resx">
+      <DependentUpon>201706040932161_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

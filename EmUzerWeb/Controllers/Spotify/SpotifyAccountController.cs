@@ -104,7 +104,7 @@ namespace EmUzerWeb.Controllers.Spotify
 
             if (string.IsNullOrWhiteSpace(returnUrl))
             {
-                return View();
+                return RedirectToAction("ManageLogins", "Manage");
             }
             else
             {

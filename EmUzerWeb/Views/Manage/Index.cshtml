@@ -22,15 +22,20 @@
     </div>
     <hr />
     <div id="actions">
+        @*@using (Html.BeginForm("ChangeProfilePicture", "Manage"))
+        {
+            @Html.TextBoxFor(m => m.Photo, new {type="file", name="Photo"})
+            <input type="submit" name="Change" />
+        }*@
         @if (Model.HasPassword)
         {
-            @Html.ActionLink("Change your password", "ChangePassword", new { }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Change your password", "ChangePassword", new {}, new {@class = "btn btn-default"})
         }
         else
         {
-            @Html.ActionLink("Create a password", "SetPassword", new { }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Create a password", "SetPassword", new {}, new {@class = "btn btn-default"})
         }
 
-        @Html.ActionLink("Manage External Logins", "ManageLogins", new { }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Manage External Logins", "ManageLogins", new {}, new {@class = "btn btn-default"})
     </div>
 </div>

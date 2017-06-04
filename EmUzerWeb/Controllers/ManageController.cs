@@ -242,7 +242,7 @@ namespace EmUzerWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangeProfilePicture(IndexViewModel model)
+        private ActionResult ChangeProfilePicture(IndexViewModel model)
         {
             if (!model.Photo.ContentType.StartsWith("image"))
             {
