@@ -37,12 +37,12 @@ namespace EmUzerWeb.Controllers.Spotify
             spotify.FollowPlaylist(userId, playlist.Id);
             spotify.AddPlaylistTracks(userId, playlist.Id, seededTracksUris);
 
-            this.Session["GeneratedPlaylist"] = playlist.Id;
+            this.Session["GeneratedPlaylist"] = playlist.Uri;
         }
        
         public ActionResult Happiness() 
         {
-            EmotionTemplate("4tZwfgrHOc3mvqYlEYSvVi", "pop", "0DiWol3AO6WpXZgp0goxAV", "3Sz7ZnJQBIHsXLUSo0OQtM", "dance");
+            EmotionTemplate("6OqhFYFJDnBBHas02HopPT", "pop", "3LuLUNgRmmgcr14dTIWH2S", "3Sz7ZnJQBIHsXLUSo0OQtM", "dance");
             return PartialView("_GeneratedPlaylistPartial");
         } 
 
@@ -50,7 +50,6 @@ namespace EmUzerWeb.Controllers.Spotify
         {
             EmotionTemplate("30U8fYtiNpeA5KH6H87QUV", "punk-rock", "5iAet1Smzk6SWMBR6eWNBz", "5RADpgYLOuS2ZxDq7ggYYH", "heavy-metal");
             return PartialView("_GeneratedPlaylistPartial");
-;
         }
 
         public ActionResult Contempt() 
