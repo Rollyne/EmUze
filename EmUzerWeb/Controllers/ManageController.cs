@@ -68,9 +68,13 @@ namespace EmUzerWeb.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var userRepo = new UnitOfWork().GetUsersRepository();
+            var user = userRepo.FirstOrDefault(i => i.Id == userId);
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
+                Username = user.UserName,
+                ProfilePicturePath = user.ProfilePicture.FilePath,
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
