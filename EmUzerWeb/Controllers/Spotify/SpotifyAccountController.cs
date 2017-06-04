@@ -84,7 +84,7 @@ namespace EmUzerWeb.Controllers.Spotify
             var userRepo = new UnitOfWork().GetUsersRepository();
             var spAccRepo = new UnitOfWork().GetSpotifyAccountsRepository();
             var appUser = userRepo.FirstOrDefault(i => i.Id == HttpContext.User.Identity.GetUserId());
-            if (spAccRepo.FirstOrDefault(a => a.UserId == appUser.Id) != null)
+            if (spAccRepo.FirstOrDefault(a => a.UserId == appUser.Id) == null)
             {
                 try
                 {
