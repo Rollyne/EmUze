@@ -10,6 +10,7 @@ using SpotifyAPI.Web.Models;
 using System.Threading.Tasks;
 using Data.Models;
 using Data.Repositories;
+using EmuUzer.Models;
 using EmUzerWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -83,11 +84,11 @@ namespace EmUzerWeb.Controllers.Spotify
             var userRepo = new UnitOfWork().GetUsersRepository();
             var repo = new UnitOfWork().GetSpotifyAccountsRepository();
             var user = userRepo.FirstOrDefault(i => i.Id == HttpContext.User.Identity.GetUserId());
-            var actualAccountId = repo.FirstOrDefault(i => i.UserId == user.Id).Id;
+            var actualAccountId = repo.FirstOrDefault(i => i.UserId == user.Id).SpotifyId;
             if (HttpContext.User.Identity.IsAuthenticated && actualAccountId == accountId)
             {
                 
-                var target = repo.FirstOrDefault(i => i.Id == accountId);
+                var target = repo.FirstOrDefault(i => i.SpotifyId == accountId);
                 repo.Delete(target);
                 repo.Save();
             }
@@ -102,7 +103,7 @@ namespace EmUzerWeb.Controllers.Spotify
             var userInfo = authResult.GetPrivateProfile();
             user = new SpotifyAccount()
             {
-                Id = userInfo.Id,
+                SpotifyId = userInfo.Id,
                 AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
