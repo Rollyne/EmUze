@@ -344,8 +344,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SpotifyAccount\SpotifyLogin.cshtml" />
     <Content Include="Views\Suggestion\Index.cshtml" />
-    <Content Include="Views\Playlist\Index.cshtml" />
     <Content Include="Views\Playlist\Sad.cshtml" />
+    <Content Include="Views\Suggestion\_GeneratedPlaylistPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
