@@ -16,11 +16,11 @@ iframe {
 }
 
 #spotify-suggestions {
-    border-bottom-color: #1db954;
+    border-color: #1db954;
 }
 
 #youtube-suggestions {
-    border-bottom-color: #cd201f;
+    border-color: #cd201f;
 }
 
 #spotify-suggestions .panel-heading {

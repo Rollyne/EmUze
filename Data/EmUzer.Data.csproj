@@ -55,6 +55,10 @@
   <ItemGroup>
     <Compile Include="Data\EmuzerDbContext.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
+    <Compile Include="Migrations\201706040718218_Initial.cs" />
+    <Compile Include="Migrations\201706040718218_Initial.Designer.cs">
+      <DependentUpon>201706040718218_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -73,6 +77,11 @@
       <Project>{6a0c6b3d-f099-4de7-9aaa-8f0a1683c0f4}</Project>
       <Name>EmUzer.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706040718218_Initial.resx">
+      <DependentUpon>201706040718218_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
