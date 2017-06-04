@@ -46,8 +46,9 @@ function savePic(dataUrl) {
         },
         error: function (data) {
             alert("No face detected! Try again!");
-            $('#result-div').hide();
+            $('#canvas').hide();
             $('#snapping-div').show();
+            $('#get-suggestions').show();
         }
     });
 }

@@ -18,6 +18,10 @@
     text-align: center;
 }
 
+#snapping-div #snap {
+    margin-top: 1em;
+}
+
 #snapping-div p {
     margin-top: 0.5em;
 }

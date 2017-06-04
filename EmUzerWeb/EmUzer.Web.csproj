@@ -244,6 +244,7 @@
     <Compile Include="Controllers\EmotionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Spotify\PlaylistController.cs" />
     <Compile Include="Controllers\Spotify\SpotifyAccountController.cs" />
     <Compile Include="Controllers\SuggestionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -350,6 +351,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SpotifyAccount\SpotifyLogin.cshtml" />
     <Content Include="Views\Suggestion\Index.cshtml" />
+    <Content Include="Views\Shared\_GeneratedPlaylistPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
