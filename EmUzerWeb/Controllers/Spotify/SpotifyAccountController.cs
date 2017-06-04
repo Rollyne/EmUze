@@ -10,10 +10,10 @@ using SpotifyAPI.Web.Models;
 using System.Threading.Tasks;
 using Data.Models;
 using Data.Repositories;
-using EmuUzer.Models;
 using EmUzerWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using EmuUzer.Models;
 
 namespace EmUzerWeb.Controllers.Spotify
 {
@@ -104,7 +104,6 @@ namespace EmUzerWeb.Controllers.Spotify
             user = new SpotifyAccount()
             {
                 SpotifyId = userInfo.Id,
-                AccessToken = authResult.AccessToken,
                 Username = userInfo.DisplayName,
             };
 
@@ -127,7 +126,7 @@ namespace EmUzerWeb.Controllers.Spotify
             }
             
 
-            this.Session["SpotifyToken"] = user.AccessToken;
+            this.Session["SpotifyToken"] =authResult.AccessToken;
 
             if (string.IsNullOrWhiteSpace(returnUrl))
             {

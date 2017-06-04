@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Data.Models;
-using EmuUzer.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using EmuUzer.Models;
 
 namespace Data.Data
 {

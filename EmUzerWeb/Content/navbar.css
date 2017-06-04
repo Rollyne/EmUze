@@ -1,19 +1,20 @@
 ﻿.navbarAddition {
-    background-color: rgba(0, 0, 0, 0.2) ;
+    background-color: rgba(0, 0, 0, 0.8) ;
 }
-    .navbarAddition * {
-        color: rgba(255,255,255,0.7);
-        transition: 0.2s;
-    }
+
+.navbarAddition * {
+    color: rgba(255,255,255,0.7);
+    transition: 0.2s;
+}
+
 .icon-bar {
     background-color: rgba(255,255,255,0.8)
 }
+
 .navbar-brand:hover {
     color: white;
 }
+
 .navbar-nav li {
     text-shadow: 1px 1px 15px rgba(0,0,0,0.4);
 }
-
-
-

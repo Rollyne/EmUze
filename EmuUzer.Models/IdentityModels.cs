@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using EmuUzer.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using EmuUzer.Models;
 
 namespace Data.Models
 {

@@ -22,6 +22,7 @@ namespace EmUzerWeb.Controllers
         private const string YOUTUBE_API_KEY = "AIzaSyBwifNeefkdiu_-nDW9QZI7hq4dkfrM0mA";
 
         // GET: Suggestions
+        [Authorize]
         public ActionResult Index(string latitude, string longtitude, string emotion = "Neutral")
         {
             if (this.Session["SpotifyToken"] == null)
