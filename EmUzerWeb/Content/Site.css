@@ -26,3 +26,21 @@ textarea {
 footer {
     text-align: center;
 }
+
+.nav.navbar-nav {
+    margin-top: 9px;
+}
+
+@media only screen and (min-width: 768px) {
+    .log {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    img.logo {
+        height: 40px;
+        transition: 0.3s;
+        width: 50px;
+    }
+}
