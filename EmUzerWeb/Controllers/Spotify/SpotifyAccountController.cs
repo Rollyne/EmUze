@@ -108,12 +108,23 @@ namespace EmUzerWeb.Controllers.Spotify
             };
 
             var userRepo = new UnitOfWork().GetUsersRepository();
+            var spAccRepo = new UnitOfWork().GetSpotifyAccountsRepository();
             var appUser = userRepo.FirstOrDefault(i => i.Id == HttpContext.User.Identity.GetUserId());
+            if (spAccRepo.FirstOrDefault(a => a.UserId == appUser.Id) != null)
+            {
+                try
+                {
+                    appUser.SpotifyAccount = user;
+                    userRepo.Update(appUser);
 
-            appUser.SpotifyAccount = user;
-            userRepo.Update(appUser);
-
-            userRepo.Save();
+                    userRepo.Save();
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+            
 
             this.Session["SpotifyToken"] =authResult.AccessToken;
 
