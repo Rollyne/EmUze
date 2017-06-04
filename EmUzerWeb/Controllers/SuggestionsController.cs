@@ -55,6 +55,8 @@ namespace EmUzerWeb.Controllers
             var emotionYoutube = this.GetYouTubeSuggestions(emotion);
             var weatherYoutube = this.GetYouTubeSuggestions(weather);
 
+            
+
             var model = new SuggestionViewModel()
             {
                 Emotion = emotion,

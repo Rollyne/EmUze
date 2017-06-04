@@ -308,7 +308,7 @@ namespace EmUzerWeb.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            var spotifyAccountId = new UnitOfWork().GetSpotifyAccountsRepository()?.FirstOrDefault(i => i.UserId == user.Id)?.AccountId;
+            var spotifyAccountId = new UnitOfWork().GetSpotifyAccountsRepository()?.FirstOrDefault(i => i.UserId == user.Id)?.Id;
             if (user == null)
             {
                 return View("Error");

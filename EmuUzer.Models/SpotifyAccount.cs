@@ -5,15 +5,15 @@ namespace Data.Models
 {
     public class SpotifyAccount
     {
-        [Key, ForeignKey("User")]
+        [Key, Column(Order = 0)]
+        public string Id { get; set; }
+
         public string UserId { get; set; }
 
-        public string AccountId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public string Username { get; set; }
 
         public string ModelError { get; set; }
-
-        public ApplicationUser User { get; set; }
     }
 }
