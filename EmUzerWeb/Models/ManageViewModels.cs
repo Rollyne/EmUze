@@ -7,6 +7,8 @@ namespace EmUzerWeb.Models
 {
     public class IndexViewModel
     {
+        public string ProfilePicturePath { get; set; }
+        public string Username { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }

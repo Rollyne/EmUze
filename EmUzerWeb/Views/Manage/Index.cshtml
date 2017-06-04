@@ -11,10 +11,11 @@
     <h4>Change your account settings</h4>
     <hr />
     <div class="profilePictureTab">
-        <img src="@User.Identity.GetProfilePicturePath()"/>
+        <img src="@Model.ProfilePicturePath"/>
 
         @Html.ActionLink("Get Picture From Facebook ", "GetFacebookPicture")
     </div>
+
     <dl class="dl-horizontal">
         <dt>Password:</dt>
         <dd>
