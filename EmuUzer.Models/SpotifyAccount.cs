@@ -5,9 +5,9 @@ namespace Data.Models
 {
     public class SpotifyAccount
     {
-        [Key, Column(Order = 0)]
         public string Id { get; set; }
 
+        [Key, Column(Order = 0)]
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
