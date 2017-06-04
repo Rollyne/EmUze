@@ -29,7 +29,7 @@ namespace EmUzerWeb.Controllers
             {
                 return this.RedirectToAction("SpotifyLogin", "SpotifyAccount", new
                 {
-                    returnUrl = string.Format("/Suggestion?latitude={0}&longtitude={1}&emotion={2}", latitude, longtitude, emotion)
+                    returnUrl = $"/Suggestion?latitude={latitude}&longtitude={longtitude}&emotion={emotion}"
                 });
             }
 
