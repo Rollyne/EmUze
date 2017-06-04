@@ -17,6 +17,7 @@
         <div data-toggle="collapse" data-target="#spotify-body" class="panel-heading">Spotify</div>
         <div class="panel-body collapse" id="spotify-body">
             <h3>Emotion Results for: @Model.Emotion</h3>
+            @Html.Partial("_GeneratedPlaylistPartial")
             @foreach (var uri in Model.SpotifyEmotionResults)
             {
                 <iframe src="https://embed.spotify.com/?uri=@uri" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
