@@ -55,18 +55,6 @@
   <ItemGroup>
     <Compile Include="Data\EmuzerDbContext.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
-    <Compile Include="Migrations\201706030642176_Initial.cs" />
-    <Compile Include="Migrations\201706030642176_Initial.Designer.cs">
-      <DependentUpon>201706030642176_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706030647296_PictureProviderTypeMigration.cs" />
-    <Compile Include="Migrations\201706030647296_PictureProviderTypeMigration.Designer.cs">
-      <DependentUpon>201706030647296_PictureProviderTypeMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706030708468_PictureProviderTypeIdRemovedMigration.cs" />
-    <Compile Include="Migrations\201706030708468_PictureProviderTypeIdRemovedMigration.Designer.cs">
-      <DependentUpon>201706030708468_PictureProviderTypeIdRemovedMigration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
@@ -79,17 +67,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706030642176_Initial.resx">
-      <DependentUpon>201706030642176_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706030647296_PictureProviderTypeMigration.resx">
-      <DependentUpon>201706030647296_PictureProviderTypeMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706030708468_PictureProviderTypeIdRemovedMigration.resx">
-      <DependentUpon>201706030708468_PictureProviderTypeIdRemovedMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmuUzer.Models\EmUzer.Models.csproj">

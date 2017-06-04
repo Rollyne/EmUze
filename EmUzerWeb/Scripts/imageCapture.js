@@ -29,7 +29,7 @@ $(document).ready( function () {
         }
     }
 
-    $(window).resize(resizeBg).trigger("resize");
+   /* $(window).resize(resizeBg).trigger("resize");*/
 });
 
 
